@@ -3,7 +3,7 @@ set -e
 git config core.fileMode true
 
 #Update from the repository
-git fetch origin && git reset --hard origin/main
+git pull origin main --ff-only
 
 # Start both servers
 echo "Starting  servers..."
