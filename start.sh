@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+git config core.fileMode true
 
 #Update from the repository
 git fetch origin && git reset --hard origin/main
