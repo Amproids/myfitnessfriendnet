@@ -19,5 +19,4 @@ cd ../client
 npm install
 npm run build &
 
-echo "Dev environment ready"
-#testin
+echo "Dev environment ready" &
