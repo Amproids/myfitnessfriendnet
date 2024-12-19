@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Get current directory where script is run
-CURRENT_DIR=$(pwd)
-
-# Find PIDs for processes running from these specific paths
-SERVER_PID=$(pgrep -f "node.*$CURRENT_DIR/server")
-VITE_PID=$(pgrep -f "vite.*$CURRENT_DIR/client")
-
+# Kill process on port 3001 (server)
+SERVER_PID=$(lsof -ti:3001)
 if [ ! -z "$SERVER_PID" ]; then
     kill $SERVER_PID
-    echo "Server stopped"
+    echo "Server stopped (port 3001)"
 fi
 
-if [ ! -z "$VITE_PID" ]; then
-    kill $VITE_PID
-    echo "Client stopped"
+# Kill process on port 3002 (client)
+CLIENT_PID=$(lsof -ti:3002)
+if [ ! -z "$CLIENT_PID" ]; then
+    kill $CLIENT_PID
+    echo "Client stopped (port 3002)"
 fi
