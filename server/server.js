@@ -23,7 +23,7 @@ app.listen(port, '0.0.0.0', () => {
 
 const { exec } = require('child_process');
 
-app.post('/webhooks', (req, res) => {
+app.post('/webhook', (req, res) => {
     console.log('Webhook received:', req.body);
     res.sendStatus(200);
 
