@@ -7,7 +7,7 @@ app.use(express.json());
 
 //root route
 app.get('/', (req, res) => {
-  res.json({ message: 'My Fitness Friend is currently under maintenence! Check back again soon! :)' });
+  res.json({ message: 'My Fitness Friend is currently under maintenence! Hi Anja, my love! :) <3' });
 });
 
 //base page route
@@ -19,7 +19,7 @@ app.post('/webhook', async (req, res) => {
         try {
             const { exec } = require('child_process');
             // Execute pull and npm install
-            exec('pm2 stop server && git pull && npm install && pm2 start server', (error, stdout, stderr) => {
+            exec('pkill -f "node server.js" && git pull && ./start.sh', (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error: ${error}`);
                     return res.status(500).send('Deploy failed');
