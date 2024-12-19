@@ -25,7 +25,5 @@ const { exec } = require('child_process');
 
 app.post('/webhook', (req, res) => {
     res.sendStatus(200);
-    //FOR SOME STUPID REASON THIS NEEDS TO NOT CHECK ERRORS IN ORDER TO WORK
-    //more bs
-    exec('cd /home/andrew/myfitnessfriendnet && ./stop.sh && cd /home/andrew/myfitnessfriendnet && ./start.sh');
+    exec('cd ~/myfitnessfriendnet && git pull && pm2 reload myfitnessfriend-back && pm2 reload myfitnessfriend-back');
 });
