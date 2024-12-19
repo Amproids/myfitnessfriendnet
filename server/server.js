@@ -34,7 +34,7 @@ app.post('/webhook', (req, res) => {
         if (payload.ref && payload.ref.startsWith('refs/heads/')) {
             console.log('GitHub Push Event:', payload);
 
-            const deployDir = path.join(os.homedir(), 'myfitnessfriendnet');
+            const deployDir = '/home/andrew/myfitnessfriendnet';
             const redeployScript = path.join(deployDir, 'redeploy.sh');
 
             // Log the paths of the directories and scripts
