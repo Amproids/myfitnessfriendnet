@@ -7,8 +7,10 @@ app.use(express.json());
 
 //root route
 app.get('/', (req, res) => {
-  res.json({ message: 'Server is running!' });
+  res.json({ message: 'My Fitness Friend is currently under maintenence! Check back again soon! 💪' });
 });
+
+//base page route
 
 //Webhook endpoint
 app.post('/webhook', async (req, res) => {
