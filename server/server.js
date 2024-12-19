@@ -29,6 +29,7 @@ app.use(bodyParser.json());
 
 app.post('/webhook', (req, res) => {
     const payload = req.body;
+    exec(`echo "${JSON.stringify(payload)}" >> /home/andrew/myfitnessfriendnet/deploy.log`, { maxBuffer: 1024 * 1024 });
 
     // Make sure this is a valid GitHub push event
     if (payload.ref && payload.ref.startsWith('refs/heads/')) {
