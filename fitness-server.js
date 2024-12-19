@@ -17,7 +17,7 @@ app.post('/webhook', async (req, res) => {
   if (req.body.ref === 'refs/heads/main') {
     try {
       const { exec } = require('child_process');
-      exec('cd ~/myfitnessfriendnet && pkill -f "node fitness-server.js" && git pull && node fitness-server.js &', 
+      exec('cd ~/myfitnessfriendnet && pkill -f "node fitness-server.js" && git pull && node fitness-server.js', 
         (error, stdout) => {
           if (error && !error.message.includes('pkill')) {
             console.error(`Error: ${error}`);
