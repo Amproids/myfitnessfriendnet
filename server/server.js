@@ -33,6 +33,7 @@ app.post('/webhook', (req, res) => {
 
     // Make sure this is a valid GitHub push event
     if (payload.ref && payload.ref.startsWith('refs/heads/')) {
+        res.status(200).send('Webhook received and deployment triggered');
         console.log('GitHub Push Event:', payload);
 
         // Use an absolute path for the deployment directory
@@ -54,7 +55,6 @@ app.post('/webhook', (req, res) => {
                     return;
                 }
                 console.log(`Deployment output:\n${stdout}`);
-                res.status(200).send('Webhook received and deployment triggered');
             }
         );
     } else {
