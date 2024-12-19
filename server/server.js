@@ -13,7 +13,7 @@ app.get('/api/test', (req, res) => {
   res.json({ message: 'Hello from Express!' });
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port: ${port}`);
 });
 
