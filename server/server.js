@@ -25,62 +25,47 @@ app.listen(port, '0.0.0.0', () => {
 
 app.post('/webhook', (req, res) => {
     try {
-        console.log('Webhook received');  // Log to confirm if request is hitting this endpoint
+        const githubPayload = req.body;
 
-        const payload = req.body;
-        console.log("Payload:", payload);  // Log the payload to check for correctness
-
-        // Check if this is a valid GitHub push event
-        if (payload.ref && payload.ref.startsWith('refs/heads/')) {
-            console.log('GitHub Push Event:', payload);
-
-            const deployDir = path.join(os.homedir(), 'myfitnessfriendnet');
-            const redeployScript = path.join(deployDir, 'redeploy.sh');
-
-            // Log the paths of the directories and scripts
-            console.log(`Deploying from: ${deployDir}`);
-            console.log(`Redeploy script: ${redeployScript}`);
-
-            // Ensure the redeploy.sh script is executable
-            exec(`chmod +x ${redeployScript}`, (chmodError, chmodStdout, chmodStderr) => {
-                if (chmodError) {
-                    console.error('Error making redeploy.sh executable:', chmodError);
-                    console.error('chmod stderr:', chmodStderr);
-                    res.status(500).send('Internal Server Error: Failed to set permissions');
-                    return;
-                }
-                console.log('Successfully made redeploy.sh executable');
-
-                // Execute the deployment script
-                exec(
-                    `cd ${deployDir} && ./redeploy.sh`,
-                    { maxBuffer: 1024 * 1024 },
-                    (error, stdout, stderr) => {
-                        if (error) {
-                            console.error(`Error executing redeploy: ${error.message}`);
-                            console.error('stdout:', stdout);
-                            console.error('stderr:', stderr);
-                            res.status(500).send('Internal Server Error');
-                            return;
-                        }
-                        if (stderr) {
-                            console.error('stderr:', stderr);
-                            res.status(500).send('Internal Server Error');
-                            return;
-                        }
-                        console.log(`Deployment output:\n${stdout}`);
-                        res.status(200).send('Webhook received and deployment triggered');
-                    }
-                );
-            });
-        } else {
-            // If the payload doesn't correspond to a valid push event
+        if (!githubPayload.ref || !githubPayload.ref.startsWith('refs/heads/')) {
             console.log("Invalid Push Event, no ref match.");
             res.status(400).send('Invalid GitHub Push Event');
+            return;
         }
+
+        const deployDir = path.join(os.homedir(), 'myfitnessfriendnet');
+        const redeployScript = path.join(deployDir, 'redeploy.sh');
+
+        // Ensure the redeploy.sh script is executable
+        exec(`chmod +x ${redeployScript}`, (chmodError) => {
+            if (chmodError) {
+                console.error('Error making redeploy.sh executable:', chmodError);
+                res.status(500).send('Internal Server Error: Failed to set permissions');
+                return;
+            }
+
+            // Execute the deployment script
+            exec(
+                `cd ${deployDir} && ./redeploy.sh`,
+                { maxBuffer: 1024 * 1024 },
+                (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Error executing redeploy: ${error.message}`);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+                    if (stderr) {
+                        console.error('stderr:', stderr);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+                    res.status(200).send('Webhook received and deployment triggered');
+                }
+            );
+        });
     } catch (error) {
-        // Catch any unexpected errors
         console.error('Error in webhook handler:', error);
         res.status(500).send('Internal Server Error: ' + error);
     }
 });
+
