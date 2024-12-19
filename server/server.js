@@ -24,16 +24,22 @@ app.listen(port, '0.0.0.0', () => {
 const { exec } = require('child_process');
 
 app.post('/webhook', (req, res) => {
+    console.log('Webhook received');
     res.sendStatus(200);
-    exec('pm2 restart all', (error, stdout, stderr) => {
-        if (error) {
-            console.error(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.error(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
+    
+    const command = 'cd /home/andrew/myfitnessfriendnet && /home/andrew/myfitnessfriendnet/stop.sh && /home/andrew/myfitnessfriendnet/start.sh';
+    console.log('Executing command:', command);
+    
+    exec(command, (error, stdout, stderr) => {
+      console.log('Command executed');
+      if (error) {
+        console.error(`error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.error(`stderr: ${stderr}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
     });
-});
+  });
