@@ -14,4 +14,4 @@ if [ ! -z "$CLIENT_PID" ]; then
     echo "Client stopped (port 3002)"
 fi
 
-echo "Server stopped" &
+echo "Server stopped" & exit
