@@ -29,7 +29,7 @@ app.post('/webhook', (req, res) => {
   
   // Execute deployment script with detached process
   const child = exec(
-    `bash /home/andrew/myfitnessfriendnet/deploy.sh`,
+    `bash /home/andrew/myfitnessfriendnet/redeploy.sh`,
     { detached: true, stdio: 'ignore' },
     (error, stdout, stderr) => {
       if (error) {
