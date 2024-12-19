@@ -57,4 +57,5 @@ fi
 echo "=== Deployment completed at $(date) ==="
 # Ensure the script stays alive long enough for processes to start
 sleep 5
+cd ~/myfitnessfriendnet
 chmod 777 redeploy.sh
