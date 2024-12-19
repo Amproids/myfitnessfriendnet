@@ -1,9 +1,5 @@
 #!/bin/bash
 echo "=== Beginning deployment at $(date) ==="
-echo "logging to file"
-# Set up logging
-exec 1> >(tee -a "/home/andrew/myfitnessfriendnet/deploy.log")
-exec 2> >(tee -a "/home/andrew/myfitnessfriendnet/deploy.log" >&2)
 
 # Navigate to project directory
 cd ~/myfitnessfriendnet || exit 1
