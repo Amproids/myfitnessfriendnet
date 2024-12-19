@@ -25,5 +25,5 @@ const { exec } = require('child_process');
 
 app.post('/webhook', (req, res) => {
     res.sendStatus(200);
-    exec('cd ~/myfitnessfriendnet && git pull && pm2 reload myfitnessfriend-back && pm2 reload myfitnessfriend-back');
+    exec('cd ~/myfitnessfriendnet && ./stop.sh && ./start.sh');
 });
