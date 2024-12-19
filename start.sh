@@ -1,21 +1,17 @@
 #!/bin/bash
 set -e
 
-# Define project directory
-PROJECT_DIR=~/myfitnessfriendnet
-
-# Update code
-cd "$PROJECT_DIR"
-git pull
+# Start both dev servers
+echo "Starting dev servers..."
 
 # Start server
-cd "$PROJECT_DIR/server"
+cd server
 npm install
 npm run start &
 
-# Build client
-cd "$PROJECT_DIR/client"
+# Start client
+cd ../client
 npm install
 npm run build &
 
-echo "Web app started"
+echo "Dev environment ready"

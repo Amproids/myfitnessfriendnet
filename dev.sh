@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# Define project directory 
-PROJECT_DIR=~/myfitnessfriendnet
-
 # Start both dev servers
 echo "Starting dev servers..."
 
