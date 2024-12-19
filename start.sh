@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-# Start both dev servers
-echo "Starting dev servers..."
+#Update from the repository
+git pull
+
+# Start both servers
+echo "Starting  servers..."
 
 # Start server
 cd server
