@@ -1,9 +1,10 @@
 #!/bin/bash
 set -e
-git config core.fileMode true
 
-#Update from the repository
-git pull origin main --ff-only
+# Then do the hard reset
+git fetch origin && git reset --hard origin/main
+# Fix permissions again after reset
+chmod 775 start.sh
 
 # Start both servers
 echo "Starting  servers..."
