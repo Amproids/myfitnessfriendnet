@@ -30,7 +30,7 @@ app.post('/webhook', async (req, res) => {
       );
     } catch (error) {
       console.error(error);
-      res.status(500).send('Deploy failed');
+      res.status(500).send(`${error}\nDeploy failed'`);
     }
   } else {
     res.status(200).send('Not main branch');
