@@ -1,6 +1,4 @@
 #!/bin/bash
-pkill -f "node.*server"
-sleep 1
-pkill -f "node.*client" 
-sleep 1
+pm2 stop myfitnessfriend-back
+pm2 stop myfitnessfriend-front
 echo "Environment stopped"
