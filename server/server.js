@@ -21,24 +21,21 @@ app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port: ${port}`);
 });
 
-const { exec } = require('child_process');
-
 app.post('/webhook', (req, res) => {
     res.sendStatus(200);
     
-    const command = 'pm2 reload all';
-    console.log('Executing command:', command);
-    
-    exec(command, (error, stdout, stderr) => {
-      console.log('Command executed');
-      if (error) {
-        console.error(`error: ${error.message}`);
-        return;
+    exec(
+      `cd ~/myfitnessfriendnet && bash deploy.sh`,
+      (error, stdout, stderr) => {
+        if (error) {
+          console.error(`error: ${error.message}`);
+          return;
+        }
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+        console.log(`stdout: ${stdout}`);
       }
-      if (stderr) {
-        console.error(`stderr: ${stderr}`);
-        return;
-      }
-      console.log(`stdout: ${stdout}`);
-    });
+    );
   });
