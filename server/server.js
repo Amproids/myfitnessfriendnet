@@ -26,7 +26,7 @@ const { exec } = require('child_process');
 app.post('/webhook', (req, res) => {
     res.sendStatus(200);
     
-    const command = 'pm2 restart all';
+    const command = 'pm2 reload all';
     console.log('Executing command:', command);
     
     exec(command, (error, stdout, stderr) => {
