@@ -1,6 +1,6 @@
 #!/bin/bash
 lsof -ti:3001 | xargs -r kill
-sleep 1
+sleep 3
 lsof -ti:3002 | xargs -r kill
-sleep 1
+sleep 3
 echo "Environment stopped"
