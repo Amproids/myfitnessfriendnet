@@ -19,4 +19,5 @@ cd ../client
 npm install
 npm run build &
 
+sleep 1
 echo "Client started"
