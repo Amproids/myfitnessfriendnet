@@ -9,4 +9,5 @@ echo "Starting servers..."
 
 wait
 sleep 1
+reset
 echo "Client started"
