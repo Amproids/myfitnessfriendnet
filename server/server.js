@@ -27,7 +27,7 @@ app.post('/webhook', (req, res) => {
     console.log('Webhook received');
     res.sendStatus(200);
     
-    const command = 'cd /home/andrew/myfitnessfriendnet && /home/andrew/myfitnessfriendnet/stop.sh && /home/andrew/myfitnessfriendnet/start.sh';
+    const command = 'pm2 restart all';
     console.log('Executing command:', command);
     
     exec(command, (error, stdout, stderr) => {
