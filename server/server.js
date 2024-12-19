@@ -24,7 +24,6 @@ app.listen(port, '0.0.0.0', () => {
 const { exec } = require('child_process');
 
 app.post('/webhook', (req, res) => {
-    console.log('Webhook received');
     res.sendStatus(200);
     
     const command = 'pm2 restart all';
