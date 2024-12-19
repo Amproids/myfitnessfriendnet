@@ -7,5 +7,5 @@ echo "Starting servers..."
 (cd server && npm install && npm run start) &
 (cd client && npm install && npm run build)
 
-sleep 2
+wait
 echo "Client started"
