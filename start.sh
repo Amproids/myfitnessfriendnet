@@ -2,7 +2,7 @@
 set -e
 
 #Update from the repository
-git pull
+git fetch origin && git reset --hard origin/main
 
 # Start both servers
 echo "Starting  servers..."
