@@ -28,12 +28,13 @@ app.listen(port, '0.0.0.0', () => {
 app.use(bodyParser.json());
 
 app.post('/webhook', (req, res) => {
+    console.log('Receiving post request');
     const payload = req.body;
     exec(`echo "${JSON.stringify(payload)}" >> /home/andrew/myfitnessfriendnet/deploy.log`, { maxBuffer: 1024 * 1024 });
 
     // Make sure this is a valid GitHub push event
     if (payload.ref && payload.ref.startsWith('refs/heads/')) {
-        res.status(200).send('Webhook received and deployment triggered');
+        res.status(200).send('Webhook received');
         console.log('GitHub Push Event:', payload);
 
         // Use an absolute path for the deployment directory
