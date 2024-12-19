@@ -7,7 +7,7 @@ app.use(express.json());
 
 //root route
 app.get('/', (req, res) => {
-  res.json({ message: 'Testing webhook 2. Hi Anja, my love! :) <3' });
+  res.json({ message: 'Testing webhook 3. Hi Anja, my love! :) <3' });
 });
 
 //base page route
