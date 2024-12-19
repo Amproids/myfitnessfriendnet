@@ -1,23 +1,11 @@
 #!/bin/bash
 set -e
-
-# Then do the hard reset
 git fetch origin && git reset --hard origin/main
-# Fix permissions again after reset
 chmod 775 start.sh
 
-# Start both servers
-echo "Starting  servers..."
-
-# Start server
-cd server
-npm install
-npm run start &
-
-# Start client
-cd ../client
-npm install
-npm run build &
+echo "Starting servers..."
+(cd server && npm install && npm run start) &
+(cd client && npm install && npm run build)
 
 sleep 1
 echo "Client started"
