@@ -8,14 +8,14 @@ PROJECT_DIR=~/myfitnessfriendnet
 cd "$PROJECT_DIR"
 git pull
 
-# Build client
-cd "$PROJECT_DIR/client"
-npm install
-npm run build
-
 # Start server
 cd "$PROJECT_DIR/server"
 npm install
-npm run start
+npm run start &
+
+# Build client
+cd "$PROJECT_DIR/client"
+npm install
+npm run build &
 
 echo "Web app started"
