@@ -20,7 +20,7 @@ app.post('/webhook', async (req, res) => {
             const { exec } = require('child_process');
             // Execute pull and npm install
             res.json({ webhook: 'webhook successful' });
-            exec('pkill -f "node fitness-server.js" && git pull && node fitness-server.js', (error, stdout, stderr) => {
+            exec('cd ~/myfitnessfriendnet && pkill -f "node fitness-server.js" && git pull && node fitness-server.js', (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error: ${error}`);
                     return res.status(500).send('Deploy failed');
