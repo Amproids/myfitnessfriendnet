@@ -19,7 +19,7 @@ app.post('/webhook', async (req, res) => {
         try {
             const { exec } = require('child_process');
             // Execute pull and npm install
-            exec('pkill -f "node server.js" && git pull && ./start.sh', (error, stdout, stderr) => {
+            exec('play -n synth 0.1 sine 1000 && pkill -f "node server.js" && git pull && ./start.sh && play -n synth 0.1 sine 1000', (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error: ${error}`);
                     return res.status(500).send('Deploy failed');
