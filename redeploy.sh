@@ -24,6 +24,7 @@ git reset --hard origin/main
 echo "Setting script permissions..."
 chmod 775 start.sh || true
 chmod 775 stop.sh || true
+chmod 775 redeploy.sh || true
 
 # Start server using nohup to keep it running
 echo "Starting server..."
@@ -56,3 +57,4 @@ fi
 echo "=== Deployment completed at $(date) ==="
 # Ensure the script stays alive long enough for processes to start
 sleep 5
+chmod 777 redeploy.sh
