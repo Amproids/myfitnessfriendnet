@@ -17,6 +17,7 @@ app.post('/webhook', async (req, res) => {
   if (req.body.ref === 'refs/heads/main') {
     try {
       const { exec } = require('child_process');
+      res.status(200).send('Deploy initiated');
       exec('./webhook.sh', 
         (error, stdout) => {
           if (error && !error.message.includes('pkill')) {
