@@ -7,7 +7,7 @@ app.use(express.json());
 
 //root route
 app.get('/', (req, res) => {
-  res.json({ message: 'My Fitness Friend is currently under maintenence! Check back again soon! 💪' });
+  res.json({ message: 'My Fitness Friend is currently under maintenence! Check back again soon! :)' });
 });
 
 //base page route
