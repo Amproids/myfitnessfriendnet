@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // Serve static files from the 'dist' directory
-app.use(express.static(path.join(__dirname, '../dist'))); 
+app.use(express.static(path.join(__dirname, '../client/dist'))); 
 
 // Static Routes
 app.get('/', (req, res) => {
