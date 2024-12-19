@@ -14,3 +14,5 @@ if [ ! -z "$CLIENT_PID" ]; then
     echo "Client stopped (port 3002)"
 fi
 reset
+
+echo "Environment stopped"
