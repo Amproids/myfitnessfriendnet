@@ -26,7 +26,7 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(200);
     
     exec(
-      `cd ~/myfitnessfriendnet && bash deploy.sh`,
+      `cd ~/myfitnessfriendnet && bash redeploy.sh`,
       (error, stdout, stderr) => {
         if (error) {
           console.error(`error: ${error.message}`);
