@@ -16,3 +16,18 @@ app.get('/api/test', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
+
+const { exec } = require('child_process');
+
+app.post('/webhooks', (req, res) => {
+    console.log('Webhook received:', req.body);
+    res.sendStatus(200);
+
+    exec('~/myfitnessfriendnet/stop.sh && ~/myfitnessfriendnet/start.sh', (error, stdout, stderr) => {
+        if (error) {
+            console.error(`Error: ${error}`);
+            return;
+        }
+        console.log(`Output: ${stdout}`);
+    });
+});
