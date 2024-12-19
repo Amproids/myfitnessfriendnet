@@ -20,4 +20,4 @@ npm install
 npm run build &
 
 echo "Dev environment ready"
-#testing
+#testin
