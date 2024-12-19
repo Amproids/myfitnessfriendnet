@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Set up logging
-LOG_FILE="/home/andrew/myfitnessfriendnet/deploy.log"
-exec 1> >(tee -a "$LOG_FILE")
-exec 2> >(tee -a "$LOG_FILE" >&2)
-
 echo "Starting deployment at $(date)"
 
 # Navigate to project directory
