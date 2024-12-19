@@ -35,7 +35,7 @@ app.post('/webhook', (req, res) => {
         console.log('GitHub Push Event:', payload);
 
         // Use an absolute path for the deployment directory
-        const deployDir = path.join(os.homedir(), 'myfitnessfriendnet');
+        const deployDir = path.join(os.homedir(), '/home/andrew/myfitnessfriendnet');
         const redeployScript = path.join(deployDir, 'redeploy.sh');
 
         exec(
