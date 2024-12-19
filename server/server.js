@@ -27,39 +27,54 @@ app.listen(port, '0.0.0.0', () => {
 
 app.use(bodyParser.json());
 
-app.post('/webhook', (req, res) => {
-    console.log('Receiving post request');
-    const payload = req.body;
-    exec(`echo "${JSON.stringify(payload)}" >> /home/andrew/myfitnessfriendnet/deploy.log`, { maxBuffer: 1024 * 1024 });
+app.post('/webhook', async (req, res) => {
+    try {
+        console.log('Webhook received');  // Log to confirm if request is hitting this endpoint
 
-    // Make sure this is a valid GitHub push event
-    if (payload.ref && payload.ref.startsWith('refs/heads/')) {
-        res.status(200).send('Webhook received');
-        console.log('GitHub Push Event:', payload);
+        const payload = req.body;
+        console.log("Payload:", payload);  // Log the payload to check for correctness
 
-        // Use an absolute path for the deployment directory
-        const deployDir = path.join(os.homedir(), '/home/andrew/myfitnessfriendnet');
-        const redeployScript = path.join(deployDir, 'redeploy.sh');
+        // Check if this is a valid GitHub push event
+        if (payload.ref && payload.ref.startsWith('refs/heads/')) {
+            console.log('GitHub Push Event:', payload);
 
-        exec(
-            `cd ${deployDir} && ${redeployScript}`,
-            { maxBuffer: 1024 * 1024 },
-            (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error executing redeploy: ${error.message}`);
-                    res.status(500).send('Internal Server Error');
-                    return;
+            const deployDir = path.join(os.homedir(), 'myfitnessfriendnet');
+            const redeployScript = path.join(deployDir, 'redeploy.sh');
+
+            // Log the paths of the directories and scripts
+            console.log(`Deploying from: ${deployDir}`);
+            console.log(`Redeploy script: ${redeployScript}`);
+
+            // Execute the deployment script
+            exec(
+                `cd ${deployDir} && ${redeployScript}`,
+                { maxBuffer: 1024 * 1024 },
+                (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Error executing redeploy: ${error.message}`);
+                        console.error('stdout:', stdout);
+                        console.error('stderr:', stderr);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+                    if (stderr) {
+                        console.error(`stderr: ${stderr}`);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+                    console.log(`Deployment output:\n${stdout}`);
+                    res.status(200).send('Webhook received and deployment triggered');
                 }
-                if (stderr) {
-                    console.error(`stderr: ${stderr}`);
-                    res.status(500).send('Internal Server Error');
-                    return;
-                }
-                console.log(`Deployment output:\n${stdout}`);
-            }
-        );
-    } else {
-        // If the payload doesn't correspond to a push event
-        res.status(400).send('Invalid GitHub Push Event');
+            );
+        } else {
+            // If the payload doesn't correspond to a valid push event
+            console.log("Invalid Push Event, no ref match.");
+            res.status(400).send('Invalid GitHub Push Event');
+        }
+    } catch (error) {
+        // Catch any unexpected errors
+        console.error('Error in webhook handler:', error);
+        res.status(500).send('Internal Server Error: ' + error);
     }
 });
+
