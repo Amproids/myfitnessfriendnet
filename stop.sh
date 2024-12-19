@@ -13,5 +13,4 @@ if [ ! -z "$CLIENT_PID" ]; then
     kill $CLIENT_PID
     echo "Client stopped (port 3002)"
 fi
-
-stty sane
+reset
