@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Starting deployment at $(date)"
+# Set up logging
+exec 1> >(tee -a "/home/andrew/myfitnessfriendnet/deploy.log")
+exec 2> >(tee -a "/home/andrew/myfitnessfriendnet/deploy.log" >&2)
+
+echo "=== Deployment started at $(date) ==="
 
 # Navigate to project directory
 cd ~/myfitnessfriendnet || exit 1
@@ -18,14 +22,15 @@ git reset --hard origin/main
 
 # Set permissions for scripts
 echo "Setting script permissions..."
-chmod 777 ./* || true
+chmod 775 start.sh || true
+chmod 775 stop.sh || true
 
-# Start server with nohup
+# Start server using nohup to keep it running
 echo "Starting server..."
 cd server || exit 1
 nohup npm run start > ../server.log 2>&1 &
 SERVER_PID=$!
-echo $SERVER_PID > ../server.pid
+echo "Server started with PID: $SERVER_PID"
 
 # Start client build
 echo "Building client..."
@@ -39,25 +44,15 @@ wait $BUILD_PID
 BUILD_STATUS=$?
 
 if [ $BUILD_STATUS -eq 0 ]; then
-    echo "Build completed successfully at $(date)"
-    echo "Server running with PID: $(cat ../server.pid)"
+    echo "Build completed successfully"
+    # Save the server PID to a file
+    echo $SERVER_PID > ../server.pid
 else
-    echo "Build failed with status $BUILD_STATUS at $(date)"
-    if [ -f "../server.pid" ]; then
-        kill $(cat ../server.pid) 2>/dev/null || true
-        rm ../server.pid
-    fi
+    echo "Build failed with status $BUILD_STATUS"
+    kill $SERVER_PID 2>/dev/null || true
     exit 1
 fi
 
-# Keep track of server status
-echo "Checking server status..."
+echo "=== Deployment completed at $(date) ==="
+# Ensure the script stays alive long enough for processes to start
 sleep 5
-if kill -0 $SERVER_PID 2>/dev/null; then
-    echo "Server is running successfully"
-else
-    echo "Server failed to start properly"
-    exit 1
-fi
-
-echo "Deployment completed successfully at $(date)"
