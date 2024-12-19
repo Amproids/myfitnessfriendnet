@@ -8,10 +8,14 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-// Test route
-app.get('/api/test', (req, res) => {
-  res.json({ message: 'Hello from Express!' });
+// Serve static files from the 'dist' directory
+app.use(express.static(path.join(__dirname, '../dist'))); 
+
+// Static Routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
+
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server is running on port: ${port}`);
