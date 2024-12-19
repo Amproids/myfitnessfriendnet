@@ -23,28 +23,22 @@ app.listen(port, '0.0.0.0', () => {
 
 const { exec } = require('child_process');
 
-
 app.post('/webhook', (req, res) => {
-  // Send response immediately
   res.sendStatus(200);
   
-  // Execute deployment script in detached mode
-  const child = exec(
-    `cd ~/myfitnessfriendnet && bash redeploy.sh`,
-    { detached: true },
+  exec(
+    'cd ~/myfitnessfriendnet && ./redeploy.sh',
+    { maxBuffer: 1024 * 1024 },
     (error, stdout, stderr) => {
       if (error) {
-        console.error(`Deployment error: ${error.message}`);
+        console.error(`error: ${error.message}`);
         return;
       }
       if (stderr) {
-        console.error(`Deployment stderr: ${stderr}`);
+        console.error(`stderr: ${stderr}`);
         return;
       }
-      console.log(`Deployment stdout: ${stdout}`);
+      console.log(`stdout: ${stdout}`);
     }
   );
-  
-  // Unref the child process to allow it to run independently
-  child.unref();
 });
