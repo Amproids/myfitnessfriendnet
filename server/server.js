@@ -25,12 +25,12 @@ const { exec } = require('child_process');
 
 app.post('/webhook', (req, res) => {
     res.sendStatus(200);
-    exec('/path/to/stop.sh', (error, stdout, stderr) => {
+    exec('/home/andrew/myfitnessfriendnet/stop.sh', (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error}`);
         return;
       }
-      exec('/path/to/start.sh', (error, stdout, stderr) => {
+      exec('/home/andrew/myfitnessfriendnet/start.sh', (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error}`);
         }
