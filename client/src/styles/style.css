@@ -4,10 +4,10 @@
     --primary-light: #9F67FF;  /* purple-500 */
     --primary-dark: #6D28D9;  /* purple-700 */
     --primary-hover: #8B5CF6;  /* purple-400 */
-    --primary-bg-light: #F5F3FF;  /* purple-50 */
-    --text-dark: #1F2937;  /* gray-800 */
-    --text-light: #6B7280;  /* gray-500 */
-    --white: #FFFFFF;
+    --bg1: #F5F3FF;  /* purple-50 */
+    --text2: #1F2937;  /* gray-800 */
+    --text1: #6B7280;  /* gray-500 */
+    --bg2: #FFFFFF;
     --bg-gray: #F3F4F6;  /* gray-100 */
     --footer-bg: #1F2937;  /* gray-800 */
 }
@@ -21,7 +21,7 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.5;
-    color: var(--text-dark);
+    color: var(--text2);
     background-color: var(--bg-gray);
 }
 
@@ -34,7 +34,7 @@ body {
 /* Navigation */
 .main-nav {
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--bg2);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -60,13 +60,13 @@ body {
 }
 
 .nav-links a {
-    color: var(--white);
+    color: var(--bg2);
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
 .nav-links a:hover {
-    color: var(--primary-bg-light);
+    color: var(--bg1);
 }
 
 .auth-buttons {
@@ -77,7 +77,7 @@ body {
 /* Buttons */
 .btn-login {
     background-color: var(--primary-light);
-    color: var(--white);
+    color: var(--bg2);
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 0.5rem;
@@ -86,7 +86,7 @@ body {
 }
 
 .btn-signup {
-    background-color: var(--white);
+    background-color: var(--bg2);
     color: var(--primary);
     padding: 0.5rem 1rem;
     border: none;
@@ -96,7 +96,7 @@ body {
 }
 
 .btn-primary {
-    background-color: var(--white);
+    background-color: var(--bg2);
     color: var(--primary);
     padding: 0.75rem 2rem;
     border: none;
@@ -117,7 +117,7 @@ body {
 
 .btn-store {
     background-color: black;
-    color: var(--white);
+    color: #F9FAFB;
     padding: 0.5rem 1.5rem;
     border: none;
     border-radius: 0.5rem;
@@ -130,7 +130,7 @@ body {
 /* Hero Section */
 .hero {
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--bg2);
     padding: 5rem 1.5rem;
     text-align: center;
 }
@@ -165,7 +165,7 @@ body {
 }
 
 .feature-card {
-    background-color: var(--white);
+    background-color: var(--bg2);
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -184,7 +184,7 @@ body {
 }
 
 .feature-card p {
-    color: var(--text-light);
+    color: var(--text1);
     margin-bottom: 1rem;
 }
 
@@ -213,7 +213,7 @@ body {
 }
 
 .activity-card {
-    background-color: var(--white);
+    background-color: var(--bg2);
     padding: 1.5rem;
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -233,7 +233,7 @@ body {
 }
 
 .time {
-    color: var(--text-light);
+    color: var(--text1);
     font-size: 0.875rem;
 }
 
@@ -246,7 +246,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     background-color: var(--primary);
-    color: var(--white);
+    color: var(--bg2);
     padding: 2rem;
     border-radius: 0.5rem;
     display: flex;
@@ -279,7 +279,7 @@ body {
 /* Footer */
 .main-footer {
     background-color: var(--footer-bg);
-    color: var(--white);
+    color: var(--bg2);
     padding: 3rem 1.5rem;
 }
 
@@ -302,7 +302,7 @@ body {
 }
 
 .footer-section p {
-    color: var(--text-light);
+    color: var(--text1);
 }
 
 .footer-section ul {
@@ -314,12 +314,12 @@ body {
 }
 
 .footer-section ul a {
-    color: var(--text-light);
+    color: var(--text1);
     text-decoration: none;
 }
 
 .footer-section ul a:hover {
-    color: var(--white);
+    color: var(--bg2);
 }
 
 .social-links {
@@ -328,19 +328,102 @@ body {
 }
 
 .social-links a {
-    color: var(--text-light);
+    color: var(--text1);
     font-size: 1.25rem;
 }
 
 .social-links a:hover {
-    color: var(--white);
+    color: var(--bg2);
 }
 
 .footer-bottom {
     border-top: 1px solid #374151;
     padding-top: 2rem;
     text-align: center;
-    color: var(--text-light);
+    color: var(--text1);
+}
+
+/* Interactivity */
+/* Add smooth transitions for all interactive elements */
+.btn-login,
+.btn-signup,
+.btn-primary,
+.btn-link,
+.btn-store,
+.feature-card,
+.activity-card,
+.nav-links a,
+.social-links a {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Enhanced button hover effects */
+.btn-login:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-signup:hover {
+    background-color: var(--bg1);
+    transform: translateY(-1px);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+    color: var(--bg2);
+    transform: translateY(-1px);
+}
+
+.btn-store:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Card hover effects */
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.activity-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Navigation hover effects */
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--bg2);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Social links hover effects */
+.social-links a:hover {
+    color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* Add subtle scale effect to avatars */
+.avatar {
+    transition: transform 0.2s ease-in-out;
+}
+
+.avatar:hover {
+    transform: scale(1.2);
 }
 
 /* Media Queries */
@@ -379,10 +462,10 @@ body {
         --primary-light: #B794F4;
         --primary-dark: #7C3AED;
         --primary-hover: #A78BFA;
-        --primary-bg-light: #2D1B69;  /* Darker purple background */
-        --text-dark: #F9FAFB;  /* Light text for dark theme */
-        --text-light: #D1D5DB;
-        --white: #1F2937;  /* Dark background for cards */
+        --bg1: #2D1B69;  /* Darker purple background */
+        --text2: #F9FAFB;  /* Light text for dark theme */
+        --text1: #D1D5DB;
+        --bg2: #1F2937;  /* Dark background for cards */
         --bg-gray: #111827;  /* Dark background */
         --footer-bg: #0F172A;
     }
@@ -416,5 +499,8 @@ body {
     .activity-card,
     .app-preview {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    footer h4 {
+        color: var(--primary)
     }
 }
