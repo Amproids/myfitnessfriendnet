@@ -17,7 +17,7 @@
             </div>
             <div class="nav-links">
                 <a href="#">Home</a>
-                <a href="#">Workout Library</a>
+                <a href="/exercises/">Workout Library</a>
                 <a href="#">My Progress</a>
                 <a href="#">Community</a>
             </div>
@@ -76,7 +76,7 @@
             <div class="activity-grid">
                 <div class="activity-card">
                     <div class="user-info">
-                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <img src="/user-icon.svg" alt="User Avatar" class="avatar">
                         <div class="user-details">
                             <h4>Sarah completed Full Body HIIT</h4>
                             <p class="time">2 hours ago</p>
@@ -87,7 +87,7 @@
 
                 <div class="activity-card">
                     <div class="user-info">
-                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <img src="/user-icon.svg" alt="User Avatar" class="avatar">
                         <div class="user-details">
                             <h4>Mike achieved a new PR</h4>
                             <p class="time">5 hours ago</p>
@@ -116,7 +116,31 @@
                     </button>
                 </div>
             </div>
-            <img src="/api/placeholder/300/200" alt="App Preview" class="app-preview">
+        </div>
+    </div>
+
+    <!-- WebSite Development Progress Section-->
+    <div class="dev-progress">
+        <div class="progress-container">
+            <h2>Development Progress</h2>
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <h3>Feature Status</h3>
+                    <div class="feature-list"></div>
+                </div>
+                
+                <div class="progress-card">
+                    <h3>User Growth</h3>
+                    <div class="user-count">
+                        <div class="count-value">0</div>
+                        <div class="count-label">Active Users</div>
+                        <div class="count-goal">Goal: 1,000 users</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -160,5 +184,6 @@
             </div>
         </div>
     </footer>
+    <script src="src/scripts/home.js"></script>
 </body>
 </html>
